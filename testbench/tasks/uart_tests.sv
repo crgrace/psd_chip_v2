@@ -40,61 +40,61 @@ logic debug;
 begin
     errors = 0;
     debug = FALSE;
-    config_default[0] = 8'hF0;      
-    config_default[1] = 8'h07;      
-    config_default[2] = 8'h77;      
-    config_default[3] = 8'h77;      
-    config_default[4] = 8'h77;      
-    config_default[5] = 8'h77;      
+    config_default[0] = 8'h3F;      
+    config_default[1] = 8'h04;      
+    config_default[2] = 8'h61;      
+    config_default[3] = 8'h61;      
+    config_default[4] = 8'h61;      
+    config_default[5] = 8'h61;      
     config_default[6] = 8'h8E;      
     config_default[7] = 8'h70;      
     config_default[8] = 8'h81;      
     config_default[9] = 8'h81;      
     config_default[10] = 8'h81;      
     config_default[11] = 8'h81;      
-    config_default[12] = 8'h07;      
-    config_default[13] = 8'hF2;      
-    config_default[14] = 8'hF2;      
-    config_default[15] = 8'hF2;      
-    config_default[16] = 8'hF2;      
-    config_default[17] = 8'h02;      
-    config_default[18] = 8'h1C;      
-    config_default[19] = 8'h1C;      
-    config_default[20] = 8'h1C;      
-    config_default[21] = 8'h1C;      
-    config_default[22] = 8'h00;      
-    config_default[23] = 8'h00;      
-    config_default[24] = 8'h00;      
-    config_default[25] = 8'h00;      
-    config_default[26] = 8'h00;      
-    config_default[27] = 8'h00;      
-    config_default[28] = 8'h00;      
-    config_default[29] = 8'h00;      
-    config_default[30] = 8'h00;      
-    config_default[31] = 8'h00;      
-    config_default[32] = 8'h00;      
-    config_default[33] = 8'h00;      
-    config_default[34] = 8'h00;      
-    config_default[35] = 8'h00;      
-    config_default[36] = 8'h00;      
-    config_default[37] = 8'h00;      
-    config_default[38] = 8'h00;      
-    config_default[39] = 8'h00;      
-    config_default[40] = 8'h00;      
-    config_default[41] = 8'h00;      
-    config_default[42] = 8'h00;      
-    config_default[43] = 8'h00;      
-    config_default[44] = 8'h00;      
-    config_default[45] = 8'h00;      
-    config_default[46] = 8'h00;      
+    config_default[12] = 8'h03;      
+    config_default[13] = 8'h0A;      
+    config_default[14] = 8'h0A;      
+    config_default[15] = 8'h0A;      
+    config_default[16] = 8'h0A;      
+    config_default[17] = 8'h01;      
+    config_default[18] = 8'h93;      
+    config_default[19] = 8'h93;      
+    config_default[20] = 8'h93;      
+    config_default[21] = 8'h93;      
+    config_default[22] = 8'h04;      
+    config_default[23] = 8'h6E;      
+    config_default[24] = 8'h6E;      
+    config_default[25] = 8'h6E;      
+    config_default[26] = 8'h6E;      
+    config_default[27] = 8'h80;      
+    config_default[28] = 8'h73;      
+    config_default[29] = 8'h23;      
+    config_default[30] = 8'h82;      
+    config_default[31] = 8'h73;      
+    config_default[32] = 8'h23;      
+    config_default[33] = 8'h82;      
+    config_default[34] = 8'h03;      
+    config_default[35] = 8'h10;      
+    config_default[36] = 8'h15;      
+    config_default[37] = 8'h19;      
+    config_default[38] = 8'h10;      
+    config_default[39] = 8'h15;      
+    config_default[40] = 8'h19;      
+    config_default[41] = 8'h0F;      
+    config_default[42] = 8'h0F;      
+    config_default[43] = 8'h0F;      
+    config_default[44] = 8'h0F;      
+    config_default[45] = 8'h0F;      
+    config_default[46] = 8'h0F;      
     config_default[47] = 8'h1B;      
     config_default[48] = 8'h19;      
     config_default[49] = 8'h19;      
     config_default[50] = 8'h19;      
     config_default[51] = 8'h00;      
-    config_default[52] = 8'h00;      
+    config_default[52] = 8'h10;      
     config_default[53] = 8'h01;      
-    config_default[54] = 8'h00;      
+    config_default[54] = 8'h01;      
     config_default[55] = 8'h20;      
     config_default[56] = 8'h28;      
     config_default[57] = 8'h30;      
@@ -109,9 +109,6 @@ begin
     config_default[66] = 8'h00;      
 
     $display("Test: isDefaultConfig");
-  //  regfileOpUART(READ,0,0); // loop through registers
-  //  regfileOpUART(WRITE,0,8'hF0); // loop through registers
-  //  regfileOpUART(READ,0,0); // loop through registers
 
     for (int i = 0; i < NUMREGS; i++) begin
         regfileOpUART(READ,i,0); // loop through registers
@@ -190,13 +187,6 @@ begin
         randomize(address) with {address < NUMREGS; address >= 0;};
         randomize(data) with {data < 256; data >= 0;};
         regfileOpUART(wrb,address,data);
-/*       
-        if (debug) begin
-            $display("wrb = %d",wrb);
-            $display("address = %d",address);
-            $display("data = %d",data);
-        end
-*/
         // if task is a write, update scoreboard
         if (wrb) begin
             regfileState[address] = data;
@@ -220,51 +210,5 @@ begin
 end
 endtask    
         
-// randomly read and write UART data for specified number of trails
-/*
-task random_spi_test;
-// randomly reads and writes random data to random SPI registers
-// used to protect against confirmation bias in our testing
-input Verbose;
-input WriteToLog;
-input integer NumTrials;
-reg[24*8:1] block_name;
-reg [WORDWIDTH-1:0] spi_state [REGNUM-1:0]; // holds copy of SPI state
-integer addr, trial, numtest;
-reg [WORDWIDTH-1:0] spi_seed;
-reg [WORDWIDTH-1:0] spi_addr;
-reg [WORDWIDTH-1:0] spi_data;
-reg spi_op;
-begin
-
-    block_name = "spi_random";
-    if (WriteToLog == 1) initFile(block_name);
-
-    // get random seed 
-    getSeed;
-    spi_seed = $unsigned(seed)%(2**(WORDWIDTH-1));
-
-    // first load all SPI registers with a random default word
-    // next load SPI state with same word for setup
-    for (addr = 0; addr < REGNUM; addr = addr + 1) begin
-        spi_master(WRITE,addr,spi_seed);
-        spi_state[addr] = spi_seed;
-    end
-// now randomly read and write SPI data for specified number of trials
-    for (trial = 0; trial < NumTrials; trial = trial + 1) begin
-        spi_op = $unsigned($random)%2;
-        spi_addr = $unsigned($random)%(REGNUM-1);
-        spi_data = $unsigned($random)%(2**(WORDWIDTH-1));
-        spi_master(spi_op,spi_addr,spi_data);
-        // if a read, check to see if it matches SPI state
-        if (spi_op == READ) begin
-            checkFault(block_log,block_name,"test",receivedData,spi_state[spi_addr],spi_addr,WriteToLog,Verbose,FALSE);
-        end else // spi_op = WRITE and need to update SPI state
-            spi_state[spi_addr] = spi_data;
-    end // for
-reportResults(block_name,WriteToLog);
-end 
-endtask
-*/
 
 `endif // _uart_tests_
